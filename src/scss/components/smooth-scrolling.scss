@@ -1,0 +1,124 @@
+@import '../mixins/fonts';
+@import '../mixins/breakpoints';
+@import '../mixins/debug';
+@import '../globals';
+
+.scroll-container {
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+header {
+  position: relative;
+  height: 80vh;
+
+  @include breakpoint(md) {
+    height: 100vh;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+}
+
+.text {
+  @include font('Libre Franklin');
+  line-height: 1.5em;
+
+  @include breakpoint(lg) {
+    margin: 0 4em;
+  }
+
+  @include breakpoint(xl) {
+    margin: 0 6em;
+  }
+
+  &--title {
+    text-align: center;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+
+    @include font('Playfair Display');
+  }
+
+  &--fixed {
+    @include breakpoint(md) {
+      grid-row-start: 3;
+    }
+  }
+}
+
+.grid-col-1-3 {
+  @include breakpoint(md) {
+    grid-column: 1/3;
+  }
+}
+
+section {
+  margin: 5em 0;
+  padding-bottom: 10em;
+}
+
+.section-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 5em;
+  grid-row-gap: 5em;
+
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid--filler {
+  border: 1px solid;
+  grid-row: 3/20;
+
+  @include breakpoint(md) {
+    margin-right: 6em;
+    grid-column-start: 2;
+    grid-row: 2/20;
+  }
+}
+
+.title {
+  @include font('AvenirNext-Bold');
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 9vw;
+  bottom: 10%;
+
+  & > span {
+    display: block;
+    letter-spacing: 3px;
+  }
+
+  &--small {
+    font-size: 10px;
+    font-weight: 400;
+    @include font('AvenirNext');
+
+    @include breakpoint(md) {
+      font-size: 14px;
+    }
+
+    @include breakpoint(md) {
+      font-size: 16px;
+    }
+  }
+
+  &--stroke {
+    @include text-stroke($body-color);
+    display: inline-block;
+    z-index: 2;
+    position: relative;
+  }
+}

@@ -1,0 +1,75 @@
+@import '../mixins/fonts';
+@import '../mixins/height';
+
+$columns: 8;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.grid-col {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.grid-col__item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 1);
+  width: 1px;
+
+  // "to" excludes the final number => [1, n)
+  // "through" includes it => [1, n]
+  @for $i from 1 to $columns {
+    &:nth-child(#{$i}) {
+      left: percentage($i / $columns);
+    }
+  }
+}
+
+.menu {
+  @include font('Montserrat');
+
+  position: absolute;
+  top: 2.25em;
+  right: 0;
+  left: percentage(1 / $columns);
+
+  ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    width: percentage(1 / ($columns - 1));
+    text-align: center;
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+main {
+  @include full-height;
+
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.name {
+  @include font('Playfair Display');
+
+  font-size: 5vw;
+  grid-row: 1/4;
+  writing-mode: tb;
+  background-color: lightcoral;
+}
