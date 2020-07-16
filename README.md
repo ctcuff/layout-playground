@@ -10,3 +10,8 @@ The end goal is to become better at writing CSS/SCSS and just styling in general
 
 ## An example exercise
 ![scroll](https://user-images.githubusercontent.com/7400747/87607488-701f9480-c6cb-11ea-8376-dbeab36d5da0.gif)
+
+## How do I run this?
+1. Clone this repo
+2. Run `yarn` to install dependencies
+3. Run `yarn dev` to start the server
