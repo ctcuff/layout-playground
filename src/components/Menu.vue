@@ -18,6 +18,7 @@
           v-for="(link, index) in links"
           :key="index"
           :to="link.to"
+          @click.native="toggleMenu"
         >
           <div class="link-title">
             {{ link.title }}
