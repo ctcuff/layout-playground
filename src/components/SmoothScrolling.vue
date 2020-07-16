@@ -54,7 +54,7 @@
         data-scroll-speed="2"
         data-scroll
       >
-        <p class="text--title grid-col-1-3" data-scroll>I.</p>
+        <p class="text--title grid-col-1-3" data-scroll>I. A Study of Scroll Speed</p>
         <p class="text" data-scroll>
           In plain English, at 4 a.m., a ray of light had been observed on the disc of the
           planet Mars in or near the "terminator"; that is to say, the zone of twilight
@@ -91,7 +91,7 @@
     <section id="fixed-element" data-scroll-section data-persistant>
       <div class="section-wrapper" data-scroll>
         <p class="text--title grid-col-1-3" data-scroll>
-          II.
+          II. A Study of Scroll Position
         </p>
         <p
           class="text text--fixed"
@@ -116,8 +116,14 @@
 
   export default {
     name: 'SmoothScrolling',
+    beforeRouteLeave(to, from, next) {
+      // Prevents the scrollbar from LocomotoveScroll
+      // from appearing on other pages
+      this.scroll.destroy()
+      next()
+    },
     mounted() {
-      new LocomotiveScroll({
+      this.scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
         smooth: true
       })
