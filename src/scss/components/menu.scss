@@ -5,11 +5,30 @@
 
 $menu-button-size: 80px;
 $menu-bar-slide-height: 10px;
-$menu-text-color: #fff;
-$menu-background-color: #000;
+
+@mixin transition($otherTransition...) {
+  $duration: 1s;
+  // prettier-ignore
+  transition: 
+    background-color $duration ease-in-out, 
+    color $duration ease-in-out,
+    $otherTransition;
+}
+
+// Theme colors are stored in separate
+// RBG so we can apply alpha to it using rgba()
+.theme--light {
+  --color-background: 255, 255, 255;
+  --color-text: 0, 0, 0;
+}
+
+.theme--dark {
+  --color-background: 0, 0, 0;
+  --color-text: 255, 255, 255;
+}
 
 .backdrop {
-  background-color: rgba($menu-background-color, 0.5);
+  background-color: rgba(var(--color-background), 0.5);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -40,11 +59,15 @@ $menu-background-color: #000;
 
 .menu__button--home {
   left: 1em;
-  color: $menu-text-color;
+  color: rgba(var(--color-text), 1);
+
+  @include transition;
 
   a {
-    color: $menu-text-color;
+    color: rgba(var(--color-text), 1);
     text-decoration: none;
+
+    @include transition;
   }
 
   @include breakpoint(md) {
@@ -84,14 +107,16 @@ $menu-background-color: #000;
   font-size: 14px;
   transition: clip-path 0.3s ease-in-out;
   user-select: none;
+  color: rgba(var(--color-background), 1);
 }
 
 .menu-bar__top,
 .menu-bar__bottom {
   height: 1px;
   width: 30px;
-  background-color: black;
-  transition: transform 0.3s ease-in-out;
+  background-color: rgba(var(--color-background), 1);
+
+  @include transition(transform 0.3s ease-in-out);
 }
 
 .menu-bar__top {
@@ -114,10 +139,12 @@ $menu-background-color: #000;
   cursor: pointer;
 
   & div {
-    background-color: $menu-text-color;
+    background-color: rgba(var(--color-text), 1);
     position: absolute;
     width: 20px;
     height: 2px;
+
+    @include transition;
 
     &:first-child {
       transform: rotate(45deg);
@@ -134,7 +161,7 @@ $menu-background-color: #000;
 }
 
 .menu__slider {
-  background-color: rgba($menu-background-color, 0.7);
+  background-color: rgba(var(--color-background), 0.7);
   backdrop-filter: blur(5px) saturate(180%);
   position: fixed;
   top: 0;
@@ -143,6 +170,8 @@ $menu-background-color: #000;
   width: 100vw;
   z-index: 101;
   transform: translateX(100%);
+
+  @include transition;
 
   @include breakpoint(md) {
     width: 45vw;
@@ -154,12 +183,14 @@ $menu-background-color: #000;
 }
 
 .menu__content {
-  color: $menu-text-color;
+  color: rgba(var(--color-text), 1);
   display: flex;
   justify-content: center;
   height: 100%;
   flex-direction: column;
   margin-left: 2em;
+
+  @include transition;
 
   &--title {
     font-size: 1em;
@@ -172,11 +203,13 @@ $menu-background-color: #000;
     position: relative;
     font-size: 2.5em;
     margin: 0.2em 0;
-    color: $menu-text-color;
+    color: rgba(var(--color-text), 1);
     text-decoration: none;
     font-weight: 600;
 
     @include font('Montserrat');
+
+    @include transition;
 
     @include breakpoint(md) {
       // Gives an underline to the link elements when hovered.
@@ -187,7 +220,7 @@ $menu-background-color: #000;
         left: 0;
         right: 0;
         height: 1px;
-        background-color: $menu-text-color;
+        background-color: rgba(var(--color-text), 1);
         transform: scaleX(0);
         transition: transform 0.15s ease-in-out;
         transform-origin: bottom right;

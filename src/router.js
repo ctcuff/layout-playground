@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Grid from '@/components/Grid'
 import SmoothScrolling from '@/components/SmoothScrolling'
 import Home from '@/components/Home'
+import Video from '@/components/Video'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/scroll',
     component: SmoothScrolling,
     title: 'Smooth Scroll'
+  },
+  {
+    path: '/video',
+    component: Video,
+    title: 'Video'
   }
 ]
 

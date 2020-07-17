@@ -1,12 +1,12 @@
 <template>
-  <div class="menu">
+  <div class="menu menu-theme--dark" ref="menu">
     <div class="backdrop" ref="backdrop"></div>
     <div class="menu__button--open" @click="toggleMenu">
       <div class="menu-bar__top"></div>
       <div class="menu__button__text">Menu</div>
       <div class="menu-bar__bottom"></div>
     </div>
-    <div class="menu__slider" ref="menu">
+    <div class="menu__slider" ref="menuSlider">
       <div class="menu__button--home">
         <router-link to="/" @click.native="toggleMenu">
           Home
@@ -46,9 +46,23 @@
       routes: routes.filter(route => route.path !== '/')
     }),
     mounted() {
+      this.applyTheme()
       this.linkElements = document.querySelectorAll('[data-link-title]')
     },
+    watch: {
+      $route() {
+        this.applyTheme()
+      }
+    },
     methods: {
+      applyTheme() {
+        // We want a light menu theme for the video component
+        // so the menu button and content stays visible
+        const isVideoPath = this.$route.path.includes('/video')
+        this.$refs.menu.classList.remove(isVideoPath ? 'theme--dark' : 'theme--light')
+        this.$refs.menu.classList.add(isVideoPath ? 'theme--light' : 'theme--dark')
+      },
+
       toggleMenu() {
         this.isOpen = !this.isOpen
 
@@ -67,7 +81,7 @@
             0
           )
           .to(
-            this.$refs.menu,
+            this.$refs.menuSlider,
             {
               x: this.isOpen ? '0%' : '100%',
               ease: this.ease,
@@ -82,9 +96,9 @@
             },
             {
               y: this.isOpen ? '0%' : '100%',
-              duration: 0.5,
+              duration: 0.7,
               ease: 'power2.out',
-              stagger: 0.1
+              stagger: this.isOpen ? 0.1 : 0
             },
             this.isOpen ? 0.2 : 0
           )
