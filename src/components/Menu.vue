@@ -7,6 +7,11 @@
       <div class="menu-bar__bottom"></div>
     </div>
     <div class="menu__slider" ref="menu">
+      <div class="menu__button--home">
+        <router-link to="/" @click.native="toggleMenu">
+          Home
+        </router-link>
+      </div>
       <div class="menu__button--close" @click="toggleMenu">
         <div></div>
         <div></div>
@@ -15,13 +20,13 @@
         <p class="menu__content--title">Studies</p>
         <router-link
           class="menu__content--option no-overflow"
-          v-for="(link, index) in links"
+          v-for="(route, index) in routes"
           :key="index"
-          :to="link.to"
+          :to="route.path"
           @click.native="toggleMenu"
         >
-          <div class="link-title">
-            {{ link.title }}
+          <div data-link-title>
+            {{ route.title }}
           </div>
         </router-link>
       </div>
@@ -31,26 +36,17 @@
 
 <script>
   import { gsap } from 'gsap'
+  import { routes } from '../router'
 
   export default {
     name: 'Menu',
     data: () => ({
       animationDuration: 1,
       ease: 'expo.out',
-      isOpen: false,
-      links: [
-        {
-          title: 'Grid',
-          to: '/grid'
-        },
-        {
-          title: 'Smooth Scroll',
-          to: '/'
-        }
-      ]
+      routes: routes.filter(route => route.path !== '/')
     }),
     mounted() {
-      this.linkElements = document.querySelectorAll('.link-title')
+      this.linkElements = document.querySelectorAll('[data-link-title]')
     },
     methods: {
       toggleMenu() {

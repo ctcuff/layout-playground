@@ -5,9 +5,11 @@
 
 $menu-button-size: 80px;
 $menu-bar-slide-height: 10px;
+$menu-text-color: #fff;
+$menu-background-color: #000;
 
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba($menu-background-color, 0.5);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -21,20 +23,39 @@ $menu-bar-slide-height: 10px;
   }
 }
 
+.menu__button--home,
 .menu__button--open {
   position: fixed;
   top: 0;
-  right: 0;
   display: flex;
-  height: $menu-button-size;
   width: $menu-button-size;
+  height: $menu-button-size;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 100;
   cursor: pointer;
 
   @include font('AvenirNext');
+}
+
+.menu__button--home {
+  left: 1em;
+  color: $menu-text-color;
+
+  a {
+    color: $menu-text-color;
+    text-decoration: none;
+  }
+
+  @include breakpoint(md) {
+    right: 1em;
+  }
+}
+
+.menu__button--open {
+  right: 0;
+  flex-direction: column;
+  z-index: 100;
 
   &:hover {
     .menu__button__text {
@@ -93,7 +114,7 @@ $menu-bar-slide-height: 10px;
   cursor: pointer;
 
   & div {
-    background-color: #fff;
+    background-color: $menu-text-color;
     position: absolute;
     width: 20px;
     height: 2px;
@@ -113,7 +134,7 @@ $menu-bar-slide-height: 10px;
 }
 
 .menu__slider {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba($menu-background-color, 0.7);
   backdrop-filter: blur(5px) saturate(180%);
   position: fixed;
   top: 0;
@@ -124,7 +145,6 @@ $menu-bar-slide-height: 10px;
   transform: translateX(100%);
 
   @include breakpoint(md) {
-    background-color: rgba(0, 0, 0, 0.5);
     width: 45vw;
   }
 
@@ -134,7 +154,7 @@ $menu-bar-slide-height: 10px;
 }
 
 .menu__content {
-  color: #fff;
+  color: $menu-text-color;
   display: flex;
   justify-content: center;
   height: 100%;
@@ -152,7 +172,7 @@ $menu-bar-slide-height: 10px;
     position: relative;
     font-size: 2.5em;
     margin: 0.2em 0;
-    color: #fff;
+    color: $menu-text-color;
     text-decoration: none;
     font-weight: 600;
 
@@ -167,7 +187,7 @@ $menu-bar-slide-height: 10px;
         left: 0;
         right: 0;
         height: 1px;
-        background-color: #fff;
+        background-color: $menu-text-color;
         transform: scaleX(0);
         transition: transform 0.15s ease-in-out;
         transform-origin: bottom right;
@@ -179,8 +199,4 @@ $menu-bar-slide-height: 10px;
       }
     }
   }
-}
-
-.no-overflow {
-  overflow: hidden;
 }
