@@ -2,19 +2,21 @@
   <div class="menu menu-theme--dark" ref="menu">
     <div class="backdrop" ref="backdrop"></div>
     <div class="menu__button--open" @click="toggleMenu">
-      <div class="menu-bar__top"></div>
-      <div class="menu__button__text">Menu</div>
-      <div class="menu-bar__bottom"></div>
+      <span class="menu-bar__top"></span>
+      <span class="menu__button__text">Menu</span>
+      <span class="menu-bar__bottom"></span>
     </div>
     <div class="menu__slider" ref="menuSlider">
-      <div class="menu__button--home">
-        <router-link to="/" @click.native="toggleMenu">
-          Home
-        </router-link>
-      </div>
-      <div class="menu__button--close" @click="toggleMenu">
-        <div></div>
-        <div></div>
+      <div class="menu-navigation">
+        <div class="menu__button--home">
+          <router-link to="/" @click.native="toggleMenu">
+            Home
+          </router-link>
+        </div>
+        <div class="menu__button--close" @click="toggleMenu">
+          <span></span>
+          <span></span>
+        </div>
       </div>
       <div class="menu__content">
         <p class="menu__content--title">Studies</p>

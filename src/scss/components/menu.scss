@@ -42,8 +42,58 @@ $menu-bar-slide-height: 10px;
   }
 }
 
-.menu__button--home,
+.menu-navigation {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 2em;
+}
+
+.menu__button--home {
+  color: rgba(var(--color-text), 1);
+
+  @include transition;
+  @include font('AvenirNext');
+
+  a {
+    color: rgba(var(--color-text), 1);
+    text-decoration: none;
+
+    @include transition;
+  }
+}
+
+.menu__button--close {
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+
+  & span {
+    background-color: rgba(var(--color-text), 1);
+    position: absolute;
+    width: 20px;
+    height: 2px;
+
+    @include transition;
+
+    &:first-child {
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
 .menu__button--open {
+  right: 0;
+  flex-direction: column;
+  z-index: 100;
   position: fixed;
   top: 0;
   display: flex;
@@ -53,32 +103,6 @@ $menu-bar-slide-height: 10px;
   align-items: center;
   flex-direction: column;
   cursor: pointer;
-
-  @include font('AvenirNext');
-}
-
-.menu__button--home {
-  left: 1em;
-  color: rgba(var(--color-text), 1);
-
-  @include transition;
-
-  a {
-    color: rgba(var(--color-text), 1);
-    text-decoration: none;
-
-    @include transition;
-  }
-
-  @include breakpoint(md) {
-    right: 1em;
-  }
-}
-
-.menu__button--open {
-  right: 0;
-  flex-direction: column;
-  z-index: 100;
 
   &:hover {
     .menu__button__text {
@@ -108,6 +132,8 @@ $menu-bar-slide-height: 10px;
   transition: clip-path 0.3s ease-in-out;
   user-select: none;
   color: rgba(var(--color-background), 1);
+
+  @include font('AvenirNext');
 }
 
 .menu-bar__top,
@@ -127,39 +153,6 @@ $menu-bar-slide-height: 10px;
   margin-bottom: -7px;
 }
 
-.menu__button--close {
-  position: absolute;
-  width: $menu-button-size;
-  height: $menu-button-size;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  right: 0;
-  cursor: pointer;
-
-  & div {
-    background-color: rgba(var(--color-text), 1);
-    position: absolute;
-    width: 20px;
-    height: 2px;
-
-    @include transition;
-
-    &:first-child {
-      transform: rotate(45deg);
-    }
-
-    &:last-child {
-      transform: rotate(-45deg);
-    }
-  }
-
-  @include breakpoint(md) {
-    right: 1em;
-  }
-}
-
 .menu__slider {
   background-color: rgba(var(--color-background), 0.7);
   backdrop-filter: blur(5px) saturate(180%);
@@ -170,6 +163,7 @@ $menu-bar-slide-height: 10px;
   width: 100vw;
   z-index: 101;
   transform: translateX(100%);
+  overflow-y: auto;
 
   @include transition;
 
@@ -185,9 +179,8 @@ $menu-bar-slide-height: 10px;
 .menu__content {
   color: rgba(var(--color-text), 1);
   display: flex;
-  justify-content: center;
-  height: 100%;
   flex-direction: column;
+  margin-top: 2em;
   margin-left: 2em;
 
   @include transition;
@@ -202,7 +195,7 @@ $menu-bar-slide-height: 10px;
   &--option {
     position: relative;
     font-size: 2.5em;
-    margin: 0.2em 0;
+    margin: 0.3em 0;
     color: rgba(var(--color-text), 1);
     text-decoration: none;
     font-weight: 600;
