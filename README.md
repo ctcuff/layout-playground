@@ -11,6 +11,15 @@ The end goal is to become better at writing CSS/SCSS and just styling in general
 ## An example exercise
 ![smooth-scroll](https://user-images.githubusercontent.com/7400747/87839894-e73f5f00-c86a-11ea-94fe-0e27400125b3.gif)
 
+## Some websites I draw inspiration from
+- https://christietang.com/
+- https://cuberto.com/
+- https://useplink.com/en/
+- https://rallyinteractive.com/
+- https://www.bnewman.co.uk/
+- https://bruno-simon.com/
+- https://lynnandtonic.com/
+
 ## How do I run this?
 1. Clone this repo
 2. Run `yarn` to install dependencies
