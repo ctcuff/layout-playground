@@ -9,7 +9,7 @@ The idea here is to gain a deeper understanding of CSS/SCSS, animations, and oth
 The end goal is to become better at writing CSS/SCSS and just styling in general. I've been saying "I'm not good at styling things", but I haven't really taken the time to understand why. This repo serves as a practice space and an opportunity to grow as a developer.
 
 ## An example exercise
-![scroll](https://user-images.githubusercontent.com/7400747/87607488-701f9480-c6cb-11ea-8376-dbeab36d5da0.gif)
+![smooth-scroll](https://user-images.githubusercontent.com/7400747/87839894-e73f5f00-c86a-11ea-94fe-0e27400125b3.gif)
 
 ## How do I run this?
 1. Clone this repo
