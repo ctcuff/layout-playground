@@ -1,6 +1,6 @@
 <template>
   <div class="menu menu-theme--dark" ref="menu">
-    <div class="backdrop" ref="backdrop"></div>
+    <div class="backdrop" ref="backdrop" @click="toggleMenu"></div>
     <div class="menu__button--open" @click="toggleMenu">
       <span class="menu-bar__top"></span>
       <span class="menu__button__text">Menu</span>
@@ -9,9 +9,7 @@
     <div class="menu__slider" ref="menuSlider">
       <div class="menu-navigation">
         <div class="menu__button--home">
-          <router-link to="/" @click.native="toggleMenu">
-            Home
-          </router-link>
+          <router-link to="/" @click.native="toggleMenu">Home</router-link>
         </div>
         <div class="menu__button--close" @click="toggleMenu">
           <span></span>
@@ -27,9 +25,7 @@
           :to="route.path"
           @click.native="toggleMenu"
         >
-          <div data-link-title>
-            {{ route.title }}
-          </div>
+          <div data-link-title>{{ route.title }}</div>
         </router-link>
       </div>
     </div>
@@ -69,7 +65,7 @@
         this.isOpen = !this.isOpen
 
         gsap.set(this.$refs.backdrop, {
-          zIndex: this.isOpen ? 100 : -1
+          zIndex: this.isOpen ? 100 : -100
         })
 
         gsap

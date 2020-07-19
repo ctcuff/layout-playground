@@ -1,0 +1,223 @@
+@import '../mixins/fonts';
+@import '../mixins/debug';
+
+@mixin pixelate($pixelMap, $cellSize) {
+  $rows: length($pixelMap);
+  $cols: length(nth($pixelMap, 1));
+
+  $backgroundGradient: null;
+  $backgroundPosition: null;
+  $backgroundSize: null;
+
+  width: #{$cols * $cellSize}px;
+  height: #{$rows * $cellSize}px;
+  background-size: #{$cellSize}px 100%, 100% #{$cellSize}px;
+  border: 1px solid;
+  border-right: none;
+  border-bottom: none;
+  background-image: linear-gradient(
+      to right,
+      transparent #{$cellSize - 1}px,
+      #000 #{$cellSize - 1}px
+    ),
+    linear-gradient(to bottom, transparent #{$cellSize - 1}px, #000 #{$cellSize - 1}px);
+
+  @for $rowIndex from 1 through length($pixelMap) {
+    $row: nth($pixelMap, $rowIndex);
+    $numCols: length($row);
+
+    @for $cellIndex from 1 through $numCols {
+      $color: nth($row, $cellIndex);
+      $backgroundGradient: $backgroundGradient, linear-gradient($color, $color);
+      $backgroundSize: $backgroundSize, #{$cellSize}px #{$cellSize}px;
+      $backgroundPosition: $backgroundPosition,
+        #{($cellIndex - 1) * $cellSize}px #{($rowIndex - 1) * $cellSize}px;
+    }
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    mix-blend-mode: multiply;
+    background-image: $backgroundGradient;
+    background-position: $backgroundPosition;
+    background-size: $backgroundSize;
+  }
+}
+
+@function mario() {
+  $r: #ad161a;
+  $y: #e58508;
+  $g: #565a02;
+  $t: transparent;
+
+  $mario: (
+    ($t, $t, $t, $t, $t, $r, $r, $r, $r, $r, $t, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $r, $r, $r, $r, $r, $r, $r, $r, $r, $t, $t, $t),
+    ($t, $t, $t, $t, $g, $g, $g, $y, $y, $g, $y, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $g, $y, $g, $y, $y, $y, $g, $y, $y, $y, $t, $t, $t),
+    ($t, $t, $t, $g, $y, $g, $g, $y, $y, $y, $g, $y, $y, $y, $t, $t),
+    ($t, $t, $t, $g, $g, $y, $y, $y, $y, $g, $g, $g, $g, $t, $t, $t),
+    ($t, $t, $t, $t, $t, $y, $y, $y, $y, $y, $y, $y, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $g, $g, $r, $g, $g, $g, $t, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $g, $g, $g, $r, $g, $g, $r, $g, $g, $g, $t, $t, $t),
+    ($t, $t, $g, $g, $g, $g, $r, $r, $r, $r, $g, $g, $g, $g, $t, $t),
+    ($t, $t, $y, $y, $g, $r, $y, $r, $r, $y, $r, $g, $y, $y, $t, $t),
+    ($t, $t, $y, $y, $y, $r, $r, $r, $r, $r, $r, $y, $y, $y, $t, $t),
+    ($t, $t, $y, $y, $r, $r, $r, $r, $r, $r, $r, $r, $y, $y, $t, $t),
+    ($t, $t, $t, $t, $r, $r, $r, $t, $t, $r, $r, $r, $t, $t, $t, $t),
+    ($t, $t, $t, $g, $g, $g, $t, $t, $t, $t, $g, $g, $g, $t, $t, $t),
+    ($t, $t, $g, $g, $g, $g, $t, $t, $t, $t, $g, $g, $g, $g, $t, $t)
+  );
+
+  @return $mario;
+}
+
+@function yin-yang() {
+  $t: transparent;
+  $b: #000;
+
+  $yinYang: (
+    ($t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $t, $t, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t),
+    ($t, $t, $t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t),
+    ($t, $t, $b, $b, $b, $b, $b, $t, $t, $b, $b, $b, $b, $t, $t, $b, $t, $t),
+    ($t, $t, $b, $b, $b, $b, $b, $t, $t, $b, $b, $b, $b, $t, $t, $b, $t, $t),
+    ($t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t, $b, $t),
+    ($t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t, $b, $t),
+    ($t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t, $t, $b, $t),
+    ($t, $b, $b, $b, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t, $t, $t, $b, $t),
+    ($t, $b, $b, $b, $b, $b, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $b, $t),
+    ($t, $b, $b, $b, $b, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $b, $t),
+    ($t, $t, $b, $b, $b, $t, $t, $t, $t, $b, $b, $t, $t, $t, $t, $b, $t, $t),
+    ($t, $t, $b, $b, $b, $t, $t, $t, $t, $b, $b, $t, $t, $t, $b, $b, $t, $t),
+    ($t, $t, $t, $b, $b, $b, $t, $t, $t, $t, $t, $t, $t, $b, $b, $t, $t, $t),
+    ($t, $t, $t, $t, $b, $b, $b, $b, $t, $t, $t, $t, $b, $b, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $t, $t, $b, $b, $b, $b, $b, $b, $t, $t, $t, $t, $t, $t),
+    ($t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t, $t)
+  );
+
+  @return $yinYang;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+[data-stroke] {
+  margin-left: 16px;
+}
+
+.header__title {
+  font-size: 3em;
+  margin: 0;
+
+  @include font('AvenirNext-Bold');
+
+  @include breakpoint(sm) {
+    font-size: 4.7em;
+  }
+
+  @include breakpoint(md) {
+    font-size: 8vw;
+  }
+}
+
+.header__sub-title {
+  margin-top: 1em;
+  font-size: 0.8em;
+
+  @include font('AvenirNext');
+
+  @include breakpoint(md) {
+    font-size: 1em;
+  }
+}
+
+.entry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  @include breakpoint(md) {
+    margin: 3em 0;
+  }
+}
+
+.mario,
+.yin-yang {
+  position: absolute;
+  transform: scale(0.5);
+
+  @include breakpoint(lg) {
+    transform: scale(1);
+  }
+}
+
+.mario {
+  @include pixelate($pixelMap: mario(), $cellSize: 29);
+}
+
+.yin-yang {
+  @include pixelate($pixelMap: yin-yang(), $cellSize: 25);
+}
+
+.square-layers {
+  width: 200px;
+  height: 200px;
+  background-color: #111d5e;
+  transform: translate(-50px, -50px);
+  // prettier-ignore
+  transition: 
+        box-shadow 0.5s ease-in-out,
+        transform 0.5s ease-in-out;
+  // prettier-ignore
+  box-shadow: 
+        25px 25px 0 0 #1f3c5e,
+        50px 50px 0 0 #c70039,
+        75px 75px 0 0 #f37121,
+        100px 100px 0 0 #ffbd69;
+
+  &:hover {
+    transform: translate(0, 0);
+    box-shadow: none;
+  }
+}
+
+.circle {
+  $size-sm: 100px;
+  $size-md: 125px;
+  $size-lg: 150px;
+
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border-top: $size-sm ridge #111d5e;
+  border-right: $size-sm ridge #1f3c5e;
+  border-bottom: $size-sm ridge #c70039;
+  border-left: $size-sm ridge #f37121;
+
+  @include breakpoint(md) {
+    border-top: $size-md ridge #111d5e;
+    border-right: $size-md ridge #1f3c5e;
+    border-bottom: $size-md ridge #c70039;
+    border-left: $size-md ridge #f37121;
+  }
+
+  @include breakpoint(lg) {
+    border-top: $size-lg ridge #111d5e;
+    border-right: $size-lg ridge #1f3c5e;
+    border-bottom: $size-lg ridge #c70039;
+    border-left: $size-lg ridge #f37121;
+  }
+}

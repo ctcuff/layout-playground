@@ -18,7 +18,3 @@ header {
     @include font('AvenirNext-Bold');
   }
 }
-
-.text--stroke {
-  @include text-stroke(transparent);
-}

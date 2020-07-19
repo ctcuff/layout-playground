@@ -4,6 +4,7 @@ import Grid from '@/components/Grid'
 import SmoothScrolling from '@/components/SmoothScrolling'
 import Home from '@/components/Home'
 import Video from '@/components/Video'
+import SingleElement from '@/components/SingleElement'
 
 Vue.use(Router)
 
@@ -27,9 +28,16 @@ const routes = [
     path: '/video',
     component: Video,
     title: 'Video'
+  },
+  {
+    path: '/one-div',
+    component: SingleElement,
+    title: 'Single Element'
   }
 ]
 
-const router = new Router({ routes })
+const router = new Router({
+  routes: routes.sort((a, b) => a.title.localeCompare(b.title))
+})
 
 export { router as default, routes }

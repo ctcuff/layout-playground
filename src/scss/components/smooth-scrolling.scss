@@ -117,11 +117,4 @@ section {
       font-size: 16px;
     }
   }
-
-  &--stroke {
-    @include text-stroke(transparent);
-
-    display: inline-block;
-    position: relative;
-  }
 }

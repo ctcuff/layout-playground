@@ -4,7 +4,7 @@
       <div class="no-overflow">
         <h1 data-heading>Welcome to my</h1>
         <h1 data-heading>
-          <span class="text--stroke">Creative Space</span>
+          <span class="text-stroke">Creative Space</span>
         </h1>
       </div>
     </header>

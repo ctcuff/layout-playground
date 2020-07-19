@@ -14,7 +14,7 @@
           in
         </span>
         <span
-          class="title--stroke"
+          class="text-stroke"
           data-scroll
           data-scroll-position="top"
           data-scroll-direction="horizontal"

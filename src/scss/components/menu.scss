@@ -36,6 +36,7 @@ $menu-bar-slide-height: 10px;
   right: 0;
   opacity: 0;
   display: none;
+  z-index: -100;
 
   @include breakpoint(md) {
     display: block;
