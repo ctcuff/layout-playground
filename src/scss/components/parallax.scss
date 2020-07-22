@@ -1,0 +1,53 @@
+@import '../mixins/fonts';
+
+h1 {
+  font-size: 8vw;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+
+  @include font('AvenirNext-Bold');
+}
+
+.parallax__group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  flex-direction: column;
+}
+
+.parallax__group:nth-child(1) {
+  background-color: lightpink;
+}
+
+.parallax__group:nth-child(2) {
+  background-color: lightgoldenrodyellow;
+}
+
+.parallax__group:nth-child(3) {
+  background-color: thistle;
+}
+
+.parallax__group--foreground {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  height: 270vh;
+  padding-top: 20em;
+  background-color: lightsteelblue;
+
+  h1 {
+    text-align: center;
+  }
+
+  @include font('Avenir');
+}

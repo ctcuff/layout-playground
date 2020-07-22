@@ -1,6 +1,6 @@
 <template>
   <div class="menu menu-theme--dark" ref="menu">
-    <div class="backdrop" ref="backdrop" @click="toggleMenu"></div>
+    <div class="backdrop" ref="backdrop"></div>
     <div class="menu__button--open" @click="toggleMenu">
       <span class="menu-bar__top"></span>
       <span class="menu__button__text">Menu</span>
@@ -64,10 +64,6 @@
       toggleMenu() {
         this.isOpen = !this.isOpen
 
-        gsap.set(this.$refs.backdrop, {
-          zIndex: this.isOpen ? 100 : -100
-        })
-
         gsap
           .timeline()
           .to(
@@ -100,6 +96,11 @@
             },
             this.isOpen ? 0.2 : 0
           )
+          .eventCallback(this.isOpen ? 'onStart' : 'onComplete', () => {
+            gsap.set(this.$refs.backdrop, {
+              zIndex: this.isOpen ? 100 : -100
+            })
+          })
       }
     }
   }

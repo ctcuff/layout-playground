@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Grid from '@/components/Grid'
+import Animation from '@/components/Animation'
 import SmoothScrolling from '@/components/SmoothScrolling'
 import Home from '@/components/Home'
 import Video from '@/components/Video'
 import SingleElement from '@/components/SingleElement'
+import Parallax from '@/components/Parallax'
 
 Vue.use(Router)
 
@@ -15,9 +16,9 @@ const routes = [
     title: 'Home'
   },
   {
-    path: '/grid',
-    component: Grid,
-    title: 'Grid'
+    path: '/animation',
+    component: Animation,
+    title: 'Animation'
   },
   {
     path: '/scroll',
@@ -33,6 +34,11 @@ const routes = [
     path: '/one-div',
     component: SingleElement,
     title: 'Single Element'
+  },
+  {
+    path: '/parallax',
+    component: Parallax,
+    title: 'Parallax'
   }
 ]
 
