@@ -1,5 +1,5 @@
 <template>
-  <div class="menu menu-theme--dark" ref="menu">
+  <div class="menu theme--dark" ref="menu">
     <div class="backdrop" ref="backdrop"></div>
     <div class="menu__button--open" @click="toggleMenu">
       <span class="menu-bar__top"></span>
