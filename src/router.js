@@ -6,6 +6,7 @@ import Home from '@/components/Home'
 import Video from '@/components/Video'
 import SingleElement from '@/components/SingleElement'
 import Parallax from '@/components/Parallax'
+import Gradients from '@/components/Gradients'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/parallax',
     component: Parallax,
     title: 'Parallax'
+  },
+  {
+    path: '/gradients',
+    component: Gradients,
+    title: 'Gradients'
   }
 ]
 
