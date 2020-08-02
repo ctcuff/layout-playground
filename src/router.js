@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Animation from '@/components/Animation'
 import SmoothScrolling from '@/components/SmoothScrolling'
 import Home from '@/components/Home'
 import Video from '@/components/Video'
@@ -15,11 +14,6 @@ const routes = [
     path: '/',
     component: Home,
     title: 'Home'
-  },
-  {
-    path: '/animation',
-    component: Animation,
-    title: 'Animation'
   },
   {
     path: '/scroll',
