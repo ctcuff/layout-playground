@@ -75,65 +75,33 @@
         cancelAnimationFrame(requestId)
         this.transitionData[transition].requestId = null
       },
-      slide() {
-        const name = 'slide'
-        const numFrames = 40
+      baseAnimation(name, cssVar, animationFunc) {
+        // Controls the number of frames the animation should take.
+        // The lower the number, the slower the animation and
+        // vice versa.
+        const numFrames = 30
 
         this.transitionData[name].frameIndex += this.transitionData[name].direction
 
         let progress = this.transitionData[name].frameIndex / numFrames
 
-        this.$refs.root.style.setProperty(
-          '--slide-stop',
-          `${+(progress * 100).toFixed(2)}%`
-        )
+        this.$refs.root.style.setProperty(cssVar, `${+(progress * 100).toFixed(2)}%`)
 
         if (this.transitionData[name].frameIndex % numFrames === 0) {
           this.stopAnimation(name)
           return
         }
 
-        this.transitionData[name].requestId = requestAnimationFrame(this.slide)
+        this.transitionData[name].requestId = requestAnimationFrame(animationFunc)
+      },
+      slide() {
+        this.baseAnimation('slide', '--slide-stop', this.slide)
       },
       blinds() {
-        const name = 'blinds'
-        const numFrames = 30
-
-        this.transitionData[name].frameIndex += this.transitionData[name].direction
-
-        const progress = this.transitionData[name].frameIndex / numFrames
-
-        this.$refs.root.style.setProperty(
-          '--blinds-stop',
-          `${+(progress * 100).toFixed(2)}%`
-        )
-
-        if (this.transitionData[name].frameIndex % numFrames === 0) {
-          this.stopAnimation(name)
-          return
-        }
-
-        this.transitionData[name].requestId = requestAnimationFrame(this.blinds)
+        this.baseAnimation('blinds', '--blinds-stop', this.blinds)
       },
       circle() {
-        const name = 'circle'
-        const numFrames = 40
-
-        this.transitionData[name].frameIndex += this.transitionData[name].direction
-
-        const progress = this.transitionData[name].frameIndex / numFrames
-
-        this.$refs.root.style.setProperty(
-          '--circle-stop',
-          `${+(progress * 100).toFixed(2)}%`
-        )
-
-        if (this.transitionData[name].frameIndex % numFrames === 0) {
-          this.stopAnimation(name)
-          return
-        }
-
-        this.transitionData[name].requestId = requestAnimationFrame(this.circle)
+        this.baseAnimation('circle', '--circle-stop', this.circle)
       }
     }
   }
